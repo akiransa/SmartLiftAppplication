@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">SmartLift</string>
+    <string name="mobileNo"> Mobile Number</string>
+    <string name="emailId" > Email Address</string>
+    <string name="gender"> Gender</string>
+    <string name="drivingLicenseNo">Driving License No</string>
+    <string name="Organisation">Organisation</string>
+    <string name="vehicleNo">Vehicle No</string>
+
+    <string name="startLoc">Start Location</string>
+    <string name="endLoc">End Location</string>
+    <string name="estimatedTime">Estimated \nTime of Travel</string>
+    <string name="userType">Type of User</string>
+    <string name="Consumer">Consumer</string>
+    <string name="provider">Provider</string>
+    <string name="maleChecked">Male</string>
+    <string name="femaleChecked">Female</string>
+    <string name="regisForm">Registration Form</string>
+    <string name="submitButton">Submit</string>
+    <string name="userName">User Name</string>
+    <string name="password">Password</string>
+
+</resources>
