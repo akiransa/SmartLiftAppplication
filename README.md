@@ -1,5 +1,5 @@
 Traffic or traffic congestion could be reduced by bike/car pooling.
-This is primarily for Bike Pooling. Many of the Bike riders/cars go empty with a sole driver. If some of them would offer lifts, within their respective source and destination, some of the traffic could be cleared. Because numerous people wait for bus at the location and more often than not, the buses run crowded, so we think that this kind of application would be helpful.
+**This is primarily for Bike Pooling.** Many of the Bike riders/cars go empty with a sole driver. If some of them would offer lifts, within their respective source and destination, some of the traffic could be cleared. Because numerous people wait for bus at the location and more often than not, the buses run crowded, so we think that this kind of application would be helpful.
 ### Working Design:
 * Service consumers and providers need to register and mention their details. 
 * Provider could turn their location services ON while travelling which enables Consumers to visualise real time tracking of who is available in that area to give lifts in a given distance range. 
