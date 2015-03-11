@@ -44,8 +44,8 @@ public class ValidateRegistrationDetails extends Activity {
 
     }
     protected  static final String TAG = "Registration Page : ";
-    private static String mypassword="Cla551c1";
-    private static String myusername="sadeanandkiran@gmail.com";
+    private static String mypassword = "Letsdoit";
+    private static String myusername = "smartliftapp@gmail.com";
     private EditText emailId;
     SQLiteDatabase db;
 
@@ -196,7 +196,7 @@ public class ValidateRegistrationDetails extends Activity {
         protected Void doInBackground(Void... params) {
             try {
                 GmailSender m;
-                m = new GmailSender("sadeanandkiran@gmail.com", "Cla551c1");
+                m = new GmailSender("smartliftapp@gmail.com", "Letsdoit");
                 m.sendMail(subject,body,senderAddress,receiverAddress);
 
             } catch (AuthenticationFailedException e) {
