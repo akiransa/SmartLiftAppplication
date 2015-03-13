@@ -15,6 +15,11 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -59,7 +64,7 @@ public class ValidateRegistrationDetails extends Activity {
     private String senderAddress ="sadeanandkiran@gmail.com";
     private String receiverAddress= "anandkiransade@gmail.com";
 
-    public void register(View button ) throws UnirestException {
+    public void register(View button ) {
         EditText userName = (EditText)findViewById(R.id.userNameValue);
         final EditText password = (EditText)findViewById(R.id.passwordValue);
         EditText mobileNo = (EditText)findViewById(R.id.mobileNoValue);
@@ -93,11 +98,7 @@ public class ValidateRegistrationDetails extends Activity {
         String toPhoneNo = "8861208777";
         String pwd = "grace2583";
         String uid="8861208777";
-        try{
 
-            ClassLoader classLoader = ValidateRegistrationDetails.class.getClassLoader();
-            URL resource = classLoader.getResource("org.apache.http.message.BasicLineFormatter.class");
-            System.out.println(resource);
  /*
 
             HttpResponse<String> request1= Unirest.get("http://alerts.sinfini.com/api/v3/index.php?method=sms&api_key=A5e9975b46xxxxxxxxxxxxxxxxxxxxxxxxx&to=8861208777&sender=8861208777&message=testing&format=json&custom=1,2&flash=0")
@@ -107,7 +108,7 @@ public class ValidateRegistrationDetails extends Activity {
             HttpResponse<JsonNode> request2= Unirest.get("http://alerts.sinfini.com/api/v3/index.php?method=sms&api_key=A5e9975b46xxxxxxxxxxxxxxxxxxxxxxxxx&to=8861208777&sender=8861208777&message=testing&format=json&custom=1,2&flash=0")
                     .asJson();
             String statusTxt=request1.getStatusText();*/
-
+/*
             HttpResponse<JsonNode> request = Unirest.get("https://site2sms.p.mashape.com/index.php?msg=hi+how+r+u-+from+site&phone=8861208777&pwd=grace2583&uid=8861208777")
                     .header("X-Mashape-Key", "p3XaAQinTDmshBPYVDHF2EJgrZj1p1RcrrLjsnDrVCGxXDdQYd")
                     .header("Accept", "application/json")
@@ -118,15 +119,18 @@ public class ValidateRegistrationDetails extends Activity {
         {
             String msg=e.getMessage();
             e.printStackTrace();
-        }
-        //new SendSMS().execute();
+        }*/
+        new SendSMS1().execute();
+       // new SendSMS().execute();
 
 
 
 
 
 
-        Log.i(TAG, genderwhat);
+
+
+            Log.i(TAG, genderwhat);
 
 
         String mobNo = mobileNo.getText().toString();
@@ -165,18 +169,60 @@ public class ValidateRegistrationDetails extends Activity {
         });
     }
 
-       private class SendSMS extends AsyncTask<Void, Void, HttpResponse<JsonNode>> {
+    private class SendSMS1 extends  AsyncTask<Void,Void,String> {
+        String response = null;
+        protected String doInBackground(Void... params) {
+            URL url = null;
+            try {
+                url = new URL("https://site2sms.p.mashape.com/index.php?msg=Welcome+to+SmartLift&phone=8861208777&pwd=grace2583&uid=8861208777");
+
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            HttpURLConnection urlConnection = null;
+            try {
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestProperty("X-Mashape-Key", "p3XaAQinTDmshBPYVDHF2EJgrZj1p1RcrrLjsnDrVCGxXDdQYd");
+                urlConnection.setRequestProperty("Accept", "application/json");
+                System.err.print("Connection parameters set!");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                System.err.print("Connection response requested !");
+                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                System.err.print("Connection response got !");
+
+                response = convertStreamToString(in);
+                System.err.print(response);
+            } catch (Exception e) {
+                System.out.print(e.toString());
+            } finally {
+                urlConnection.disconnect();
+            }
+
+            return response;
+        }
+    }
+
+    static String convertStreamToString(java.io.InputStream is) {
+        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+        return s.hasNext() ? s.next() : "";
+    }
+    private class SendSMS extends AsyncTask<Void, Void, HttpResponse<JsonNode>> {
 
         protected HttpResponse<JsonNode> doInBackground(Void... params) {
 
             HttpResponse<JsonNode> request = null;
             try {
                 // These code snippets use an open-source library.
-
+                System.err.println("Code reached here - executed!!!!!!!!!!!");
                 request = Unirest.get("https://site2sms.p.mashape.com/index.php?msg=hi+how+r+u-+from+site&phone=8861208777&pwd=grace2583&uid=8861208777")
                         .header("X-Mashape-Key", "p3XaAQinTDmshBPYVDHF2EJgrZj1p1RcrrLjsnDrVCGxXDdQYd")
                         .header("Accept", "application/json")
                         .asJson();
+                System.err.println("Code reached here also????????????? - executed!!!!!!!!!!!");
             } catch (UnirestException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
