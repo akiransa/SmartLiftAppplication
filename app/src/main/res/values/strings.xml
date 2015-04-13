@@ -19,5 +19,11 @@
     <string name="submitButton">Submit</string>
     <string name="userName">User Name</string>
     <string name="password">Password</string>
+    <string name="no_location_detected">No Location is detected.</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="MobNoError">Mobile No must have 10 digits.</string>
+    <string name="PasswordError">Password should contain at-least 1 capital,1 small , 1 number and 1 special character</string>
+    <string name="EmailIdError">Please enter valid email address</string>
+    <string name="FormErrorBeforeSubmit">Please fill all mandatory fields to proceed to registration</string>
 
 </resources>

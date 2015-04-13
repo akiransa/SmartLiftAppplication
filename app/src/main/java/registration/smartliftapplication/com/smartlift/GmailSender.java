@@ -9,7 +9,6 @@ import java.io.OutputStream;
 import java.security.Security;
 import java.util.Properties;
 
-import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -25,7 +24,7 @@ public class GmailSender extends javax.mail.Authenticator {
     private Session session;
 
     static {
-         Security.addProvider(new JSSEProvider());
+        Security.addProvider(new JSSEProvider());
     }
 
     public GmailSender(String user, String password) {
@@ -51,19 +50,19 @@ public class GmailSender extends javax.mail.Authenticator {
     }
 
     public synchronized void sendMail(String subject, String body, String sender, String recipients) throws Exception {
-        try{
+        try {
             MimeMessage message = new MimeMessage(session);
-            DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
-            message.setSender(new InternetAddress(sender));
+            //DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/html");
             message.setSubject(subject);
-            message.setDataHandler(handler);
+            //message.setDataHandler(handler);
             if (recipients.indexOf(',') > 0)
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipients));
             else
                 message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipients));
+            message.setContent(body, "text/html");
             Transport.send(message);
-        }catch(Exception e){
-            Log.i("Error sending mail",e.getMessage().toString());
+        } catch (Exception e) {
+            Log.i("Error sending mail", e.getMessage().toString());
         }
     }
 
